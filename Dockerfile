@@ -3,10 +3,10 @@ WORKDIR /root
 COPY . .
 #RUN go build main.go 
 RUN last_version=$(curl -Ls "https://api.github.com/repos/FranzKafkaYu/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') \
-    && wget -N --no-check-certificate -O /tmp/x-ui-linux-amd64.tar.gz https://github.com/FranzKafkaYu/x-ui/releases/download/${last_version}/x-ui-linux-amd64.tar.gz \
-    && tar zxvf /tmp/x-ui-linux-amd64.tar.gz -C /tmp \
+    && wget -N --no-check-certificate -O /tmp/x-ui-linux-s390x.tar.gz https://github.com/FranzKafkaYu/x-ui/releases/download/${last_version}/x-ui-linux-s390x.tar.gz \
+    && tar zxvf /tmp/x-ui-linux-s390x.tar.gz -C /tmp \
     && cp -r /tmp/x-ui/* ./ \
-    && chmod +x x-ui bin/xray-linux-amd64
+    && chmod +x x-ui bin/xray-linux-s390x
 
 
 FROM debian:11-slim
